@@ -38,7 +38,7 @@ function armor_1234567890_abc(){
 		$_SERVER["REMOTE_ADDR"] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 
 	// SSL ceritificate
-	foreach( array( 'HTTP_CF_VISITOR', 'HTTP_X_FORWARDED_PROTO' ) as $option ) {
+	foreach( array( 'HTTP_CF_VISITOR', 'HTTP_X_FORWARDED_PROTO', 'HTTP_X_FORWARDED_PROTOCOL' ) as $option ) {
 		if ( isset( $_SERVER[ $option ] ) && ( strpos( $_SERVER[ $option ], 'https' ) !== false ) ) {
 			$_SERVER[ 'HTTPS' ] = 'on';
 			break;
