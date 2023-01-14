@@ -9,6 +9,7 @@
  *      2015.03 - add nginx X_REAL_IP support.
  *      2016.10 - add CF HTTPS support.
  *      2017.08 - fix array parameters
+ *      2023.01 - fix symphony _fragment
  */
 
 function armor_1234567890_abc(){
@@ -32,6 +33,12 @@ function armor_1234567890_abc(){
 
 	// http://blog.sucuri.net/2015/02/analysis-of-the-fancybox-for-wordpress-vulnerability.html
 	if (isset($_REQUEST["action"]) && $_REQUEST["action"] == "update" && isset($_REQUEST["mfbfw"]))
+		exit;
+
+	// https://www.ambionics.io/blog/symfony-secret-fragment
+	if (
+		(isset($_SERVER["REQUEST_URI" ]) && strpos($_SERVER["REQUEST_URI" ], "/_fragment") !== false )
+	)
 		exit;
 
 	// fix REMOTE_ADDR
